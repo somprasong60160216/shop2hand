@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../connect.php'); 
 
 // echo '<pre>';
 // print_r($_POST);
@@ -10,11 +10,15 @@ include('../condb.php');
 // exit();
 
 
-
+	$ref_m_id = $_POST['ref_m_id'];
+	$p_m_name = $_POST["p_m_name"];
+	$p_m_edit_date = $_POST["p_m_edit_date"];
 	$ref_t_id = $_POST["ref_t_id"];
 	$p_name = $_POST["p_name"];
+	$p_intro = $_POST["p_intro"];
 	$p_detail = $_POST["p_detail"];
 	$p_price = $_POST["p_price"];
+	$p_qty = $_POST["p_qty"];
 	$p_id = $_POST["p_id"];
 	$p_img2 = $_POST["p_img2"];
 
@@ -42,22 +46,31 @@ include('../condb.php');
 	
 	
 	//edit prd
-	$sql = "UPDATE tbl_prd SET 
-	 
-	ref_t_id='$ref_t_id',
+	$sql = "UPDATE tbl_prd 
+	SET ref_t_id='$ref_t_id',
 	p_name='$p_name',
+	p_intro='$p_intro',
 	p_detail='$p_detail',
 	p_price='$p_price',
-	p_img='$newname'
-	WHERE p_id=$p_id
-	";
-
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	p_qty='$p_qty',
+	p_img='$newname',
+	p_m_name='$p_m_name',
+	p_m_edit_date='$p_m_edit_date'
+	WHERE p_id=$p_id";
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;
 	// echo '</pre>';
 	// exit;
+	$sql2 = "INSERT INTO tbl_prd_update_log
+	(ref_p_id,
+	ref_m_id)
+	VALUES 
+	($p_id,
+	$ref_m_id)";
+
+	$result2 = mysqli_query($conn, $sql2) or die ("Error in query: $sql " . mysqli_error($conn));
 	
 	//ปิดการเชื่อมต่อ database
 	mysqli_close($conn);

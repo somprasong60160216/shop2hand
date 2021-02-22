@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../connect.php'); 
 
 // echo '<pre>';
 // print_r($_POST);
@@ -16,10 +16,10 @@ include('../condb.php');
 	$m_fname = mysqli_real_escape_string($conn,$_POST["m_fname"]);
 	$m_name = mysqli_real_escape_string($conn,$_POST["m_name"]);
 	$m_lname = mysqli_real_escape_string($conn,$_POST["m_lname"]);
+	$m_address = mysqli_real_escape_string($conn,$_POST["m_address"]);
 	$m_email = mysqli_real_escape_string($conn,$_POST["m_email"]);
 	$m_phone = mysqli_real_escape_string($conn,$_POST["m_phone"]);
 	$m_level = mysqli_real_escape_string($conn,$_POST["m_level"]);
-
 	$date1 = date("Ymd_His");
 	$numrand = (mt_rand());
 	$m_img = (isset($_POST['m_img']) ? $_POST['m_img'] : '');
@@ -40,13 +40,8 @@ include('../condb.php');
 
 
 	//เช็คซ้ำ 
-	$check = "
-	SELECT m_username, m_email 
-	FROM tbl_member  
-	WHERE m_username = '$m_username' 
-	OR m_email='$m_email'
-	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
+	$check = "SELECT m_username, m_email FROM tbl_member WHERE m_username = '$m_username' OR m_email='$m_email'";
+    $result1 = mysqli_query($conn, $check) or die(mysqli_error($conn));
     $num=mysqli_num_rows($result1);
 
     //echo $num;
@@ -62,37 +57,16 @@ include('../condb.php');
 
 	
 	//เพิ่มเข้าไปในฐานข้อมูล
-	$sql = "INSERT INTO tbl_member
-	(
-	m_username,
-	m_password,
-	m_fname,
-	m_name,
-	m_lname,
-	m_email,
-	m_phone,
-	m_img,
-	m_level
-	)
-	VALUES
-	(
-	'$m_username',
-	'$m_password',
-	'$m_fname',
-	'$m_name',
-	'$m_lname',
-	'$m_email',
-	'$m_phone',
-	'$newname',
-	'$m_level'
-	)";
+	$sql = "INSERT INTO tbl_member (m_username, m_password, m_fname, m_name, m_lname, m_address, m_email, m_phone, m_img, m_level)
+	VALUES ('$m_username', '$m_password', '$m_fname', '$m_name', '$m_lname', '$m_address', '$m_email', '$m_phone', '$newname', '$m_level')";
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;
 	// echo '</pre>';
 	// exit;
+
 	}//close chk duplicat username
 	//ปิดการเชื่อมต่อ database
 	mysqli_close($conn);

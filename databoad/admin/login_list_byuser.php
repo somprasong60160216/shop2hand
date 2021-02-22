@@ -6,7 +6,7 @@ SELECT l.ref_m_id, m.m_name, COUNT(l.ref_m_id) as total
 FROM tbl_login_log as l 
 INNER JOIN tbl_member as m ON l.ref_m_id=m.m_id
 GROUP BY l.ref_m_id
-" or die("Error:" . mysqli_error());
+" or die("Error:" . mysqli_error($conn));
 
 // echo $query;
 // exit; 
@@ -28,7 +28,7 @@ echo "
 ";
 while($row = mysqli_fetch_array($result)) { 
   echo "<tr>";
-  echo "<td align='center'>" .$i += 1 .'.'. "</td> "; 
+  echo "<td align='center'>" .@$i += 1 .'.'. "</td> "; 
   echo "<td>" .$row["m_name"] .  "</td> ";
   echo "<td align='center'>" .$row["total"] .  "</td> "; 
   

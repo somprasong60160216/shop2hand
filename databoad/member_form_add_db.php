@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('condb.php'); 
 
 // echo '<pre>';
 // print_r($_POST);
@@ -11,14 +11,15 @@ include('../condb.php');
 
 
 
-	$m_username = $_POST["m_username"];
-	$m_password = hash('sha512', $_POST["m_password"]);
-	$m_fname = $_POST["m_fname"];
-	$m_name = $_POST["m_name"];
-	$m_lname = $_POST["m_lname"];
-	$m_email = $_POST["m_email"];
-	$m_phone = $_POST["m_phone"];
-	$m_level = $_POST["m_level"];
+	$m_username = mysqli_real_escape_string($conn,$_POST["m_username"]);
+	$m_password = mysqli_real_escape_string($conn,md5($_POST["m_password"]));
+	$m_fname = mysqli_real_escape_string($conn,$_POST["m_fname"]);
+	$m_name = mysqli_real_escape_string($conn,$_POST["m_name"]);
+	$m_lname = mysqli_real_escape_string($conn,$_POST["m_lname"]);
+	$m_address = mysqli_real_escape_string($conn,$_POST["m_address"]);
+	$m_email = mysqli_real_escape_string($conn,$_POST["m_email"]);
+	$m_phone = mysqli_real_escape_string($conn,$_POST["m_phone"]);
+	$m_level = mysqli_real_escape_string($conn,$_POST["m_level"]);
 
 	$date1 = date("Ymd_His");
 	$numrand = (mt_rand());
@@ -26,13 +27,13 @@ include('../condb.php');
 	$upload=$_FILES['m_img']['name'];
 	if($upload !='') { 
 		//โฟลเดอร์ที่เก็บไฟล์
-		$path="../mimg/";
+		$path="mimg/";
 		//ตัวขื่อกับนามสกุลภาพออกจากกัน
 		$type = strrchr($_FILES['m_img']['name'],".");
 		//ตั้งชื่อไฟล์ใหม่เป็น สุ่มตัวเลข+วันที่
 		$newname =$numrand.$date1.$type;
 		$path_copy=$path.$newname;
-		$path_link="../mimg/".$newname;
+		$path_link="mimg/".$newname;
 		//คัดลอกไฟล์ไปยังโฟลเดอร์
 		move_uploaded_file($_FILES['m_img']['tmp_name'],$path_copy);  
 	}
@@ -46,7 +47,7 @@ include('../condb.php');
 	WHERE m_username = '$m_username' 
 	OR m_email='$m_email'
 	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
+    $result1 = mysqli_query($conn, $check) or die(mysqli_error($conn));
     $num=mysqli_num_rows($result1);
 
     //echo $num;
@@ -69,6 +70,7 @@ include('../condb.php');
 	m_fname,
 	m_name,
 	m_lname,
+	m_address,
 	m_email,
 	m_phone,
 	m_img,
@@ -81,13 +83,14 @@ include('../condb.php');
 	'$m_fname',
 	'$m_name',
 	'$m_lname',
+	'$m_address',
 	'$m_email',
 	'$m_phone',
 	'$newname',
 	'$m_level'
 	)";
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;
@@ -101,12 +104,12 @@ include('../condb.php');
 	if($result){
 	echo "<script type='text/javascript'>";
 	echo "alert('เพิ่มข้อมูลสำเร็จ');";
-	echo "window.location = 'member.php'; ";
+	echo "window.location = 'admin/member.php'; ";
 	echo "</script>";
 	}else{
 	echo "<script type='text/javascript'>";
 	//echo "alert('Error!!');";
-	echo "window.location = 'member.php'; ";
+	echo "window.location = 'admin/member.php'; ";
 	echo "</script>";
 }
 ?>

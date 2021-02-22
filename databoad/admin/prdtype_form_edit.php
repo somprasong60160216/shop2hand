@@ -1,7 +1,7 @@
 <?php 
 $t_id = mysqli_real_escape_string($conn,$_GET['ID']);
 $sql = "SELECT * FROM tbl_prd_type WHERE t_id=$t_id";
-$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 $row = mysqli_fetch_array($result);
 extract($row);
 

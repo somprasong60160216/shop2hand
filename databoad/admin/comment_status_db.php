@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../connect.php'); 
 
 // echo '<pre>';
 // print_r($_GET);
@@ -24,7 +24,7 @@ include('../condb.php');
 		WHERE c_id=$c_id";
 	}
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
  
 	// echo $sql;

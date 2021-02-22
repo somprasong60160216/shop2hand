@@ -5,7 +5,7 @@ $query = "
 SELECT l.*, m.m_name 
 FROM tbl_login_log as l 
 INNER JOIN tbl_member as m ON l.ref_m_id=m.m_id 
-ORDER BY l.log_id DESC" or die("Error:" . mysqli_error());
+ORDER BY l.log_id DESC" or die("Error:" . mysqli_error($conn));
 
 // echo $query;
 // exit; 

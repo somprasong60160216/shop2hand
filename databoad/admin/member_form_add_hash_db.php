@@ -17,6 +17,7 @@ include('../condb.php');
 	$m_fname = $_POST["m_fname"];
 	$m_name = $_POST["m_name"];
 	$m_lname = $_POST["m_lname"];
+	$m_address = $_POST["m_address"];
 	$m_email = $_POST["m_email"];
 	$m_phone = $_POST["m_phone"];
 	$m_level = $_POST["m_level"];
@@ -41,13 +42,8 @@ include('../condb.php');
 
 
 	//เช็คซ้ำ 
-	$check = "
-	SELECT m_username, m_email 
-	FROM tbl_member  
-	WHERE m_username = '$m_username' 
-	OR m_email='$m_email'
-	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
+	$check = "SELECT m_username, m_email FROM tbl_member WHERE m_username = '$m_username' OR m_email='$m_email'";
+    $result1 = mysqli_query($conn, $check) or die(mysqli_error($conn));
     $num=mysqli_num_rows($result1);
 
     //echo $num;
@@ -70,6 +66,7 @@ include('../condb.php');
 	m_fname,
 	m_name,
 	m_lname,
+	m_address,
 	m_email,
 	m_phone,
 	m_img,
@@ -82,13 +79,14 @@ include('../condb.php');
 	'$m_fname',
 	'$m_name',
 	'$m_lname',
+	'$m_address',
 	'$m_email',
 	'$m_phone',
 	'$newname',
 	'$m_level'
 	)";
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;

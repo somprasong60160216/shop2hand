@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12">
-            <p align="center" class="myfooter"> Shop 2 Hand </p>
+            <p align="center" class="myfooter"> </p>
         </div>
     </div>
 </div>

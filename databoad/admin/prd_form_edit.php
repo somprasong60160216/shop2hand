@@ -1,12 +1,8 @@
 <?php 
 //query prd 
 $ID = $_GET['ID'];
-$sql = "
-SELECT * 
-FROM tbl_prd as p 
-INNER JOIN tbl_prd_type as t ON p.ref_t_id=t.t_id
-WHERE p.p_id=$ID";
-$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+$sql = "SELECT * FROM tbl_prd as p INNER JOIN tbl_prd_type as t ON p.ref_t_id=t.t_id WHERE p.p_id=$ID";
+$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 $row = mysqli_fetch_array($result);
 extract($row);
 
@@ -25,8 +21,7 @@ $ref_t_id = $row['ref_t_id'];
 // exit;
 
 //query prd type 
-$query = "SELECT * FROM tbl_prd_type 
-WHERE t_id!=$ref_t_id" or die("Error:" . mysqli_error());
+$query = "SELECT * FROM tbl_prd_type WHERE t_id!=$ref_t_id" or die("Error:" . mysqli_error($conn));
 $result2 = mysqli_query($conn, $query);
 ?>
 <h4> Form แก้ไขสินค้า  </h4>
@@ -57,6 +52,14 @@ $result2 = mysqli_query($conn, $query);
   </div>
   <div class="form-group">
     <div class="col-sm-2 control-label">
+      รายละเอียดสั้น ๆ :
+    </div>
+    <div class="col-sm-7">
+      <input type="text" name="p_intro" required class="form-control" value="<?php echo $row['p_intro'];?>">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
       รายละเอียด:
     </div>
     <div class="col-sm-10">
@@ -69,6 +72,15 @@ $result2 = mysqli_query($conn, $query);
     </div>
     <div class="col-sm-2">
       <input type="number" name="p_price" required class="form-control" value="<?php echo $row['p_price'];?>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      จำนวนสินค้า :
+    </div>
+    <div class="col-sm-2">
+      <input type="number" name="p_qty" required class="form-control" value="<?php echo $row['p_qty'];?>">
     </div>
   </div>
  
@@ -90,14 +102,19 @@ $result2 = mysqli_query($conn, $query);
     <div class="col-sm-4">
       <input type="hidden" name="p_img2" value="<?php echo $row['p_img'];?>">
       <input type="hidden" name="p_id" value="<?php echo $row['p_id'];?>">
+      
+      <input type="text" name="p_m_name" value="<?php echo $m_name;?>">
+      <input type="text" name="p_m_edit_date" value="<?php echo date('Y-m-d H:i:s');?>">
+      <input type="text" name="ref_m_id" value="<?php echo $m_id;?>">
+
       <button type="submit" class="btn btn-primary">บันทึก</button>
     </div>
   </div>
 </form>
+
 <script>
 initSample();
 </script>
-
 <hr>
 <?php include('prd_update_list.php');?>
 

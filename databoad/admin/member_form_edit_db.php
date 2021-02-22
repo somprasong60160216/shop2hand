@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../connect.php'); 
 
 // echo '<pre>';
 // print_r($_POST);
@@ -12,6 +12,7 @@ include('../condb.php');
 	$m_fname = $_POST["m_fname"];
 	$m_name = $_POST["m_name"];
 	$m_lname = $_POST["m_lname"];
+	$m_address = $_POST["m_address"];
 	$m_email = $_POST["m_email"];
 	$m_phone = $_POST["m_phone"];
 	$m_level = $_POST["m_level"];
@@ -42,6 +43,7 @@ include('../condb.php');
 	m_fname='$m_fname',
 	m_name='$m_name',
 	m_lname='$m_lname',
+	m_address='$m_address',
 	m_email='$m_email',
 	m_phone='$m_phone',
 	m_img='$newname',
@@ -49,7 +51,7 @@ include('../condb.php');
 	WHERE m_id=$m_id
 	 ";
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;

@@ -1,5 +1,5 @@
 <h4> Form เพิ่มสมาชิก </h4>
-<form action="member_form_add_hash_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
+<form action="member_form_add_db.php" method="post" class="form-horizontal" enctype="multipart/form-data">
   <div class="form-group">
     <div class="col-sm-2 control-label">
       Level :
@@ -7,8 +7,8 @@
     <div class="col-sm-2">
       <select name="m_level" class="form-control" required>
         <option value="">-เลือกข้อมูล-</option>
-        <option value="ADMIN">-ADMIN-</option>
-        <option value="STAFF">-STAFF-</option>
+        <option value="ADMIN">-SELLER-</option>
+        <option value="MEMBER">-BUYER-</option>
       </select>
     </div>
   </div>
@@ -55,6 +55,15 @@
     </div>
     <div class="col-sm-4">
       <input type="text" name="m_lname" required class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      Address :
+    </div>
+    <div class="col-sm-6">
+      <input type="text" name="m_address" required class="form-control">
     </div>
   </div>
 

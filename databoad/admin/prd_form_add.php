@@ -1,5 +1,5 @@
 <?php 
-$query = "SELECT * FROM tbl_prd_type" or die("Error:" . mysqli_error());
+$query = "SELECT * FROM tbl_prd_type" or die("Error:" . mysqli_error($conn));
 $result = mysqli_query($conn, $query);
 ?>
 <h4> Form เพิ่มสินค้า  </h4>
@@ -29,6 +29,14 @@ $result = mysqli_query($conn, $query);
   </div>
   <div class="form-group">
     <div class="col-sm-2 control-label">
+      รายละเอียดสั้น ๆ :
+    </div>
+    <div class="col-sm-7">
+      <input type="text" name="p_intro" required class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
       รายละเอียด:
     </div>
     <div class="col-sm-10">
@@ -41,6 +49,15 @@ $result = mysqli_query($conn, $query);
     </div>
     <div class="col-sm-2">
       <input type="number" name="p_price" required class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      จำนวนสินค้า :
+    </div>
+    <div class="col-sm-2">
+      <input type="number" name="p_qty" required class="form-control">
     </div>
   </div>
  

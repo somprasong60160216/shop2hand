@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../connect.php'); 
 
 // echo '<pre>';
 // print_r($_POST);
@@ -14,12 +14,8 @@ include('../condb.php');
 
 
 //เช็คซ้ำ 
-	$check = "
-	SELECT  t_name 
-	FROM tbl_prd_type  
-	WHERE t_name = '$t_name' 
-	";
-    $result1 = mysqli_query($conn, $check) or die(mysqli_error());
+	$check = "SELECT  t_name FROM tbl_prd_type WHERE t_name = '$t_name' ";
+    $result1 = mysqli_query($conn, $check) or die(mysqli_error($conn));
     $num=mysqli_num_rows($result1);
 
     // echo $num;
@@ -38,11 +34,8 @@ include('../condb.php');
     }else{
 	
 	//เพิ่มเข้าไปในฐานข้อมูล
-	$sql = "INSERT INTO tbl_prd_type
-	(t_name)
-	VALUES
-	('$t_name')";
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$sql = "INSERT INTO tbl_prd_type (t_name) VALUES ('$t_name')";
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 }
 	// echo $sql;

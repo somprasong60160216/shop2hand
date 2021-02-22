@@ -1,6 +1,5 @@
 <?php
 $queryprd = " SELECT * FROM tbl_prd 
-WHERE p_qty > 0
 ORDER BY  p_id DESC"
     or die("Error:" . mysqli_error($conn));
 $rsprd = mysqli_query($conn, $queryprd);
@@ -22,11 +21,17 @@ $rsprd = mysqli_query($conn, $queryprd);
                 <div class="card-body">
                     <h5 class="card-title"> <?php echo $rsprd['p_name']. '( ' .$rsprd['p_qty'].' )';?> </h5>
                     <p class="card-text"> <?php echo $rsprd['p_intro'];?> </p>
+                    <p class="card-text"> <?php echo 'ราคา ' . $rsprd['p_price'] . ' บาท';?> </p>
+                    
+                    <a href="detail.php?p_id=<?php echo $rsprd['p_id']; ?>" class="btn btn-primary" role="button">รายละเอียด</a>
+
                     <?php if($rsprd['p_qty'] > 0 ) { ?>
-                    <a href="cart2.php?p_id=<?php echo $rsprd['p_id'];?>&act=add" class="btn btn-primary">หยิบใส่ตะกร้า</a>
+                    <a href="cart2.php?p_id=<?php echo $rsprd['p_id'];?>&act=add" class="btn btn-primary">ซื้อสินค้า</a>
                     <?php } else {
                         echo '<button class="btn btn-danger" disabled>สินค้าหมด!!</button>';
                     } ?>
+
+                    
                 </div>
             </div>
         </div>

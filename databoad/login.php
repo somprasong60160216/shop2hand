@@ -86,7 +86,7 @@
               Username :
             </div>
             <div class="col-sm-4">
-              <input type="text" name="m_username" required class="form-control">
+              <input type="text" name="m_username" required class="form-control" >
             </div>
           </div>
           <div class="form-group">

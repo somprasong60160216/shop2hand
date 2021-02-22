@@ -10,7 +10,7 @@
 	<a href="prd.php" class="list-group-item">สินค้า</a>
 	<a href="counter_view.php" class="list-group-item">จำนวนผู้เข้าชมเว็บไซต์</a>
 	<a href="comment.php" class="list-group-item">ความคิดเห็น</a>
-	<a href="index.php?act=log_login" class="list-group-item">ประวัติการ Login</a>
+	<a href="log_login.php" class="list-group-item">ประวัติการ Login</a>
 	<a href="problem.php" class="list-group-item">ปัญหา</a>
 
 	<a href="../logout.php" onclick="return confirm('Confirm?');" class="list-group-item list-group-item-danger">ออกจากระบบ</a>

@@ -15,7 +15,7 @@ include('../condb.php');
 	//delete data 
 	$sql = "DELETE FROM tbl_member WHERE m_id=$ID";
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;

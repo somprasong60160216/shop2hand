@@ -2,13 +2,13 @@
 <?php
 
 //2. query ข้อมูลจากตาราง tb_member: 
-$query = "SELECT * FROM tbl_prd_type ORDER BY t_id asc" or die("Error:" . mysqli_error());
+$query = "SELECT * FROM tbl_prd_type ORDER BY t_id asc" or die("Error:" . mysqli_error($conn));
 
 // echo $query;
 // exit; 
 
 //3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result . 
-$result = mysqli_query($conn, $query); 
+$result = mysqli_query($conn, $query);
 //4 . แสดงข้อมูลที่ query ออกมา โดยใช้ตารางในการจัดข้อมูล: 
 
 echo "<table id='example' class='display table table-bordered table-hover' cellspacing='0'>";
@@ -23,20 +23,20 @@ echo "
 </tr>
 </thead>
 ";
-while($row = mysqli_fetch_array($result)) { 
+while ($row = mysqli_fetch_array($result)) {
   echo "<tr>";
-  echo "<td align='center'>" .$row["t_id"] .'.'. "</td> "; 
-  echo "<td>" .$row["t_name"] .  "</td> "; 
+  echo "<td align='center'>" . $row["t_id"] . '.' . "</td> ";
+  echo "<td>" . $row["t_name"] .  "</td> ";
   //แก้ไขข้อมูล
   echo "<td>
-  <a href='prdtype.php?ID=$row[0]&act=edit' class='btn btn-warning btn-xs'>edit</a></td> ";
-  
+  <a href='prdtype.php?ID=$row[0]&act=edit' class='btn btn-warning btn-xs'>แก้ไข</a></td> ";
   //ลบข้อมูล
   echo "<td>
-  <a href='prdtype_del_db.php?ID=$row[0]' onclick=\"return confirm('ยืนยันการลบ?')\" class='btn btn-danger btn-xs'>-ลบ</a></td> ";
+  <a href='prdtype_del_db.php?ID=$row[0]' onclick=\"return confirm('ยืนยันการลบ?')\" class='btn btn-danger btn-xs'>ลบ</a></td> ";
   echo "</tr>";
 }
 echo "</table>";
-//5. close connection
+
+//5. close connection คืนการเชื่อมต่อเซิฟเวอร์ ดาต้าเบสจะได้ไม่ทำงานหนัก
 mysqli_close($conn);
 ?>

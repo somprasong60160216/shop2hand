@@ -24,16 +24,15 @@
 
 
 <?php
-$ds = $_GET['ds'];
-$de = $_GET['de'];
+@$ds = $_GET['ds'];
+@$de = $_GET['de'];
 
 
-if($ds==''){
+if ($ds == '') {
+} else {
 
-}else{
-
-//2. query ข้อมูลจากตาราง tb_member: 
-$query = "
+	//2. query ข้อมูลจากตาราง tb_member: 
+	$query = "
 SELECT l.ref_m_id,m.m_name, l.log_date
 FROM tbl_login_log as l
 INNER JOIN tbl_member  as m ON l.ref_m_id=m.m_id
@@ -43,16 +42,16 @@ AND '$de 23:59:59.000000'
 ORDER BY l.log_date DESC 
 " or die("Error:" . mysqli_error($conn));
 
-// echo $query;
-// exit; 
+	// echo $query;
+	// exit; 
 
-//3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result . 
-$result = mysqli_query($conn, $query); 
-//4 . แสดงข้อมูลที่ query ออกมา โดยใช้ตารางในการจัดข้อมูล: 
-echo '<h4> ประวัติการ Login by Yearly  </h4>';
-echo "<table id='example1' class='display table table-bordered table-hover' cellspacing='0'>";
-//หัวข้อตาราง
-echo "
+	//3.เก็บข้อมูลที่ query ออกมาไว้ในตัวแปร result . 
+	$result = mysqli_query($conn, $query);
+	//4 . แสดงข้อมูลที่ query ออกมา โดยใช้ตารางในการจัดข้อมูล: 
+	echo '<h4> ประวัติการ Login by Yearly  </h4>';
+	echo "<table id='example1' class='display table table-bordered table-hover' cellspacing='0'>";
+	//หัวข้อตาราง
+	echo "
 <thead>
 <tr align='center' class='danger'>
 <th width='10%'><center>ลำดับ</center></th>
@@ -61,14 +60,14 @@ echo "
 </tr>
 </thead>
 ";
-while($row = mysqli_fetch_array($result)) { 
-  echo "<tr>";
-  echo "<td align='center'>" .$i += 1 .  "</td> ";
-  echo "<td>" .$row["m_name"] .  "</td> ";
-  echo "<td align='center'>" .$row["log_date"] .  "</td> "; 
-  echo "</tr>";
-}
-echo "</table>";
+	while ($row = mysqli_fetch_array($result)) {
+		echo "<tr>";
+		echo "<td align='center'>" . @$i += 1 .  "</td> ";
+		echo "<td>" . $row["m_name"] .  "</td> ";
+		echo "<td align='center'>" . $row["log_date"] .  "</td> ";
+		echo "</tr>";
+	}
+	echo "</table>";
 }
 
 //5. close connection

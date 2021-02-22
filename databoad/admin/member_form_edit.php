@@ -1,7 +1,7 @@
 <?php 
 $ID = mysqli_real_escape_string($conn,$_GET['ID']);
 $sql = "SELECT * FROM tbl_member WHERE m_id=$ID";
-$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 $row = mysqli_fetch_array($result);
 extract($row);
 
@@ -27,7 +27,7 @@ extract($row);
         <?php 
         $ml =  $row['m_level'];
         if($ml=='ADMIN'){
-          echo '<option value="STAFF">-STAFF-</option>';
+          echo '<option value="MEMBER">-MEMBER-</option>';
         }else{
           echo '<option value="ADMIN">-ADMIN-</option>';
         }
@@ -73,7 +73,14 @@ extract($row);
       <input type="text" name="m_lname" required class="form-control" value="<?php echo $row['m_lname'];?>">
     </div>
   </div>
-
+  <div class="form-group">
+    <div class="col-sm-2 control-label">
+      Address :
+    </div>
+    <div class="col-sm-6">
+      <input type="text" name="m_address" required class="form-control" value="<?php echo $row['m_address'];?>">
+    </div>
+  </div>
   <div class="form-group">
     <div class="col-sm-2 control-label">
       email :

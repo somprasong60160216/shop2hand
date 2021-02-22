@@ -6,7 +6,7 @@ if ($_SESSION['m_name'] == '') {
     //header("Location: databoad/login.php");
     echo "<script type='text/javascript'>";
     echo "alert('คุณยังไม่ได้ login');";
-    echo "window.location = 'databoad/login.php'; ";
+    echo "window.location = 'login.php'; ";
     echo "</script>";
 }
 

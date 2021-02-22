@@ -9,8 +9,7 @@
     </div>
   </div>
   <div class="form-group">
-    <div class="col-sm-4">
-    </div>
+    <div class="col-sm-4"></div>
     <div class="col-sm-1">
       <button type="submit" class="btn btn-primary">บันทึก</button>
     </div>

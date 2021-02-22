@@ -1,12 +1,11 @@
 <?php
 //2. query ข้อมูลจากตาราง tb_member: 
-$query = "
-SELECT l.*, m.m_name 
+$query = "SELECT l.*, m.m_name 
 FROM tbl_prd_update_log as l
 INNER JOIN tbl_member as m ON l.ref_m_id=m.m_id  
 WHERE l.ref_p_id=$ID 
 ORDER BY l.lid DESC" 
-or die("Error:" . mysqli_error());
+or die("Error:" . mysqli_error($conn));
 
 // echo $query;
 // exit; 

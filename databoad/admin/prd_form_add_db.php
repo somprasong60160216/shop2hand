@@ -1,20 +1,22 @@
 <meta charset="utf-8">
 <?php
 //condb
-include('../condb.php'); 
+include('../../connect.php'); 
 
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
+// echo '<pre>';
+// print_r($_POST);
+// echo '</pre>';
 
-exit();
+// exit();
 
 
 
 	$ref_t_id = $_POST["ref_t_id"];
 	$p_name = $_POST["p_name"];
+	$p_intro = $_POST["p_intro"];
 	$p_detail = $_POST["p_detail"];
 	$p_price = $_POST["p_price"];
+	$p_qty = $_POST["p_qty"];
 	$ref_m_id = $_POST['ref_m_id'];
 
     $date1 = date("Ymd_His");
@@ -43,8 +45,10 @@ exit();
 	(
 	ref_t_id,
 	p_name,
+	p_intro,
 	p_detail,
 	p_price,
+	p_qty,
 	p_img,
 	ref_m_id
 	)
@@ -52,13 +56,15 @@ exit();
 	(
 	'$ref_t_id',
 	'$p_name',
+	'$p_intro',
 	'$p_detail',
 	'$p_price',
+	'$p_qty',
 	'$newname',
 	 $ref_m_id
 	)";
 
-	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error());
+	$result = mysqli_query($conn, $sql) or die ("Error in query: $sql " . mysqli_error($conn));
 
 	// echo '<pre>';
 	// echo $sql;

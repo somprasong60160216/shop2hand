@@ -7,11 +7,6 @@ session_start();
     include 'header.php';
     include 'banner.php';
     include 'navbar.php';
-    include 'listproduct.php';
+    include 'prd_detail.php';
     include 'footer.php';
-
-    $act = (isset($_GET['act']) ? $_GET['act'] : '');
-    if($act=='q'){
-        include('list_prd_by_search.php');
-    }
 ?>

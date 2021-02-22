@@ -1,8 +1,7 @@
 <?php 
 //query prd 
 $ID = $_GET['ID'];
-$sql = "
-SELECT * 
+$sql = "SELECT * 
 FROM tbl_prd as p 
 INNER JOIN tbl_prd_type as t ON p.ref_t_id=t.t_id
 WHERE p.p_id=$ID";
